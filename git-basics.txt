@@ -1,0 +1,101 @@
+# Git Basics
+
+## What is Git?
+
+Git is a Distributed Version Control System (DVCS) used to track changes in source code and files. It allows multiple developers to work on the same project, maintain history, and collaborate efficiently.
+
+Benefits of Git:
+
+* Tracks file changes over time.
+* Maintains version history.
+* Supports collaboration among team members.
+* Allows reverting to previous versions.
+* Integrates with remote repositories like GitHub.
+
+---
+
+# Git Workflow
+
+```text
+Working Directory
+       ↓
+Staging Area (Index)
+       ↓
+Local Repository
+       ↓
+Remote Repository (GitHub)
+```
+
+### 1. Working Directory
+
+The Working Directory is the folder where we create, modify, or delete files.
+
+Example:
+
+* Create a file: git-basics.txt
+* Edit the file and save changes.
+
+Git can detect these changes but does not track them automatically.
+
+---
+
+### 2. Staging Area (Index / Buffer Area)
+
+The Staging Area acts as a temporary holding area where selected changes are prepared before creating a commit.
+
+Purpose:
+
+* Allows choosing which changes will be included in the next commit.
+* Works as a checkpoint before saving changes permanently.
+
+Workflow:
+
+```text
+Working Directory
+       ↓ git add
+Staging Area
+```
+
+---
+
+### 3. Local Repository
+
+The Local Repository is stored inside the .git directory created by Git.
+
+Purpose:
+
+* Stores commits permanently.
+* Maintains project history.
+* Allows reverting to previous versions.
+
+Workflow:
+
+```text
+Staging Area
+      ↓ git commit
+Local Repository
+```
+
+---
+
+### 4. Remote Repository
+
+A Remote Repository is hosted on platforms like GitHub, GitLab, or Bitbucket.
+
+Purpose:
+
+* Backup of code.
+* Team collaboration.
+* Centralized code storage.
+
+Workflow:
+
+```text
+Local Repository
+      ↓ git push
+Remote Repository
+```
+
+---
+
+
