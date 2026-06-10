@@ -1,0 +1,430 @@
+Commands Used
+1. mkdir B8
+
+Purpose:
+Creates a new directory named B8.
+
+Command:
+
+mkdir B8
+
+Example:
+
+mkdir B8
+cd B8
+
+Result:
+A folder named B8 is created.
+
+2. git init
+
+Purpose:
+Initializes a new Git repository in the current directory.
+
+Command:
+
+git init
+
+Example:
+
+cd B8
+git init
+
+Output:
+
+Initialized empty Git repository
+
+What happens internally:
+
+Creates a hidden .git directory.
+Enables Git tracking for the project.
+Stores repository metadata and history.
+
+Directory Structure:
+
+B8/
+├── .git/
+3. touch git-basics.txt
+
+Purpose:
+Creates an empty file.
+
+Command:
+
+touch git-basics.txt
+
+Result:
+
+B8/
+├── .git/
+└── git-basics.txt
+
+At this stage the file is untracked by Git.
+
+Check status:
+
+git status
+
+Output:
+
+Untracked files:
+    git-basics.txt
+4. git status
+
+Purpose:
+Displays the current state of the repository.
+
+Command:
+
+git status
+
+Shows:
+
+Untracked files
+Modified files
+Staged files
+Current branch
+
+Example Output:
+
+On branch main
+
+Untracked files:
+    git-basics.txt
+5. git add
+
+Purpose:
+Moves changes from Working Directory to Staging Area.
+
+Syntax:
+
+git add <filename>
+
+Example:
+
+git add git-basics.txt
+
+Add all files:
+
+git add .
+
+Workflow:
+
+Working Directory
+       ↓ git add
+Staging Area
+
+Check:
+
+git status
+
+Output:
+
+Changes to be committed:
+    new file: git-basics.txt
+6. git commit
+
+Purpose:
+Saves staged changes permanently into the Local Repository.
+
+Syntax:
+
+git commit -m "message"
+
+Example:
+
+git commit -m "Added git basics notes"
+
+Workflow:
+
+Staging Area
+       ↓ git commit
+Local Repository
+
+Benefits:
+
+Creates a snapshot of the project.
+Maintains history.
+Allows rollback if needed.
+7. git log
+
+Purpose:
+Displays commit history.
+
+Command:
+
+git log
+
+Short Version:
+
+git log --oneline
+
+Example Output:
+
+a1b2c3d Added git basics notes
+
+Shows:
+
+Commit ID
+Author
+Date
+Commit Message
+Summary
+Create Project Folder
+        ↓
+git init
+        ↓
+Create Files
+        ↓
+git status
+        ↓
+git add .
+        ↓
+git status
+        ↓
+git commit -m "message"
+        ↓
+git log
+
+Basic Git Workflow:
+
+Working Directory
+       ↓
+Staging Area
+       ↓
+Local Repository
+       ↓
+Remote Repository (GitHub)
+
+----------------------------------------------------------------------
+
+Moving Code from Local Repository to Remote Repository (GitHub)
+
+
+## Current Status
+
+```text
+Working Directory
+       ↓
+Staging Area
+       ↓
+Local Repository ✓
+       ↓
+Remote Repository (GitHub)
+```
+
+The file has already been committed to the Local Repository. Now it needs to be uploaded to GitHub.
+
+---
+
+## Step 1: Create a Repository on GitHub
+
+1. Sign in to GitHub.
+2. Click **New Repository**.
+3. Enter Repository Name (Example: B8).
+4. Select Public or Private.
+5. Click **Create Repository**.
+
+GitHub will display repository URLs similar to:
+
+HTTPS:
+
+```text
+https://github.com/username/B8.git
+```
+
+SSH:
+
+```text
+git@github.com:username/B8.git
+```
+
+---
+
+## Step 2: Check Current Branch
+
+```bash
+git branch
+```
+
+Output:
+
+```text
+* master
+```
+
+or
+
+```text
+* main
+```
+
+---
+
+## Step 3: Rename Branch to Main (Optional)
+
+Most modern repositories use "main".
+
+```bash
+git branch -M main
+```
+
+Verify:
+
+```bash
+git branch
+```
+
+Output:
+
+```text
+* main
+```
+
+---
+
+## Step 4: Connect Local Repository to GitHub
+
+Add the remote repository:
+
+```bash
+git remote add origin https://github.com/username/B8.git
+```
+
+Example:
+
+```bash
+git remote add origin https://github.com/john/B8.git
+```
+
+Where:
+
+* origin = Remote repository alias.
+* URL = GitHub repository URL.
+
+---
+
+## Step 5: Verify Remote Connection
+
+```bash
+git remote -v
+```
+
+Example Output:
+
+```text
+origin  https://github.com/username/B8.git (fetch)
+origin  https://github.com/username/B8.git (push)
+```
+
+This confirms the local repository is linked to GitHub.
+
+---
+
+## Step 6: Push Code to GitHub
+
+First Push:
+
+```bash
+git push -u origin main
+```
+
+Where:
+
+* git push = Upload commits.
+* origin = Remote repository.
+* main = Branch name.
+* -u = Sets upstream tracking.
+
+Workflow:
+
+```text
+Local Repository
+       ↓ git push
+Remote Repository (GitHub)
+```
+
+---
+
+## Step 7: Authentication
+
+GitHub may ask for authentication.
+
+For HTTPS:
+
+* Username = GitHub Username
+* Password = Personal Access Token (PAT)
+
+GitHub no longer accepts account passwords for Git operations.
+
+---
+
+## Step 8: Verify Upload
+
+Go to GitHub repository page.
+
+You should see:
+
+```text
+B8
+ └── git-basics.txt
+```
+
+The file is now stored in the Remote Repository.
+
+---
+
+## Daily Workflow After First Push
+
+Modify file:
+
+```bash
+nano git-basics.txt
+```
+
+Check changes:
+
+```bash
+git status
+```
+
+Stage:
+
+```bash
+git add .
+```
+
+Commit:
+
+```bash
+git commit -m "Updated git basics notes"
+```
+
+Push:
+
+```bash
+git push
+```
+
+Since upstream tracking is already configured, only `git push` is required.
+
+---
+
+## Complete Flow
+
+```text
+Create File
+      ↓
+git add .
+      ↓
+git commit -m "message"
+      ↓
+Local Repository
+      ↓
+git remote add origin <repo-url>
+      ↓
+git push -u origin main
+      ↓
+Remote Repository (GitHub)
+```
+
